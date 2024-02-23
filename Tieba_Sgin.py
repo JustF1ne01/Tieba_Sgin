@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 import os
+import time
 from requests import session
 from hashlib import md5
 
@@ -109,21 +110,28 @@ class Tieba():
         self.send_notification_message()
 
     def send_notification_message(self):
-        success_list = f'\n\n- **签到成功贴吧**：\n\n'
-        for forum in self.success_list:
-            sign_rank = self.result[forum]['user_info']['user_sign_rank']
-            success_list += f'    {forum}  （签到成功，第{sign_rank}个签到）\n'
+        msg = "贴吧签到结果：\n\n"
 
-        sign_list = f'\n\n- **已经签到的贴吧**：\n\n' + "\n\n".join([f'    {forum}' for forum in self.sign_list])
+        if self.success_list:
+            msg += "- **签到成功贴吧**：\n"
+            for forum in self.success_list:
+                sign_rank = self.result[forum]['user_info']['user_sign_rank']
+                msg += f"    {forum}  （签到成功，第{sign_rank}个签到）\n"
 
-        fail_list = f'\n\n- **签到失败贴吧**：\n\n' + "\n\n".join([f'    {forum}' for forum in self.fail_list])
+        if self.sign_list:
+            msg += "- **已经签到的贴吧**：\n"
+            msg += "    " + "\n    ".join(self.sign_list) + "\n"
 
-        msg = f'共关注了{len(self.already) + len(self.rest)}个贴吧，本次成功签到了{len(self.success_list)}个，失败了{len(self.fail_list)}个，有{len(self.sign_list)}个贴吧已经签到。' \
-              f'{success_list}{fail_list}{sign_list}'
+        msg += f"\n共关注了{len(self.already) + len(self.rest)}个贴吧，"
+        msg += f"本次成功签到了{len(self.success_list)}个，"
+        msg += f"失败了{len(self.fail_list)}个，"
+        msg += f"有{len(self.sign_list)}个贴吧已经签到。"
 
         # 发送通知
         send('Tieba_Sign', msg)
 
+        # Add a 10-second delay before exiting
+        time.sleep(10)
 
 if __name__ == "__main__":
     BDUSS_values = os.getenv("Tieba_BDUSS")
