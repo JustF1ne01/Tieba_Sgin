@@ -110,7 +110,7 @@ class Tieba():
         self.send_notification_message()
 
     def send_notification_message(self):
-        msg = "贴吧签到结果：\n\n"
+        msg = "贴吧签到结果：\n"
 
         if self.success_list:
             msg += "- **签到成功贴吧**：\n"
@@ -122,7 +122,7 @@ class Tieba():
             msg += "- **已经签到的贴吧**：\n"
             msg += "    " + "\n    ".join(self.sign_list) + "\n"
 
-        msg += f"\n共关注了{len(self.already) + len(self.rest)}个贴吧，"
+        msg += f"\n共关注了{len(self.already) + len(self.success_list)}个贴吧，"
         msg += f"本次成功签到了{len(self.success_list)}个，"
         msg += f"失败了{len(self.fail_list)}个，"
         msg += f"有{len(self.sign_list)}个贴吧已经签到。"
