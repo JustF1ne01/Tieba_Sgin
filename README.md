@@ -1,14 +1,13 @@
 # Tieba_Sgin
 一个python脚本，可以实现百度贴吧签到，支持青龙面板运行只需要百度账号的BDUSS即可
 
-引用项目: https://github.com/yingfeng-i/Tieba_Sgin
+引用项目: https://github.com/fanfan142/Tieba_Sgin.git
 
 
 #### 修改后的功能：
 
 1. 修改成变量方式
 export Tieba_BDUSS=""
-
 2.修改通知方式
 
 
