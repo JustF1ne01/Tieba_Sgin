@@ -9,12 +9,14 @@
 
 1. 修改成变量方式
    export Tieba_BDUSS=""
-2. 修改通知方式
-
+2. 修改通知方式，去除只Server酱通知
 
 #### 青龙面板使用
 
 1. 青龙面板使用需要再python3中添加 pretty_errors 和 requests 依赖
 2. 抓取百度贴吧Application中的Cookies BDUSS的value值
-
-![image-20240302121449165](https://github.com/wq-h/pictures/blob/main/image-20240302121449165.png?raw=true)
+   ![image-20240302121449165](https://github.com/wq-h/pictures/blob/main/image-20240302121449165.png?raw=true)
+3. 拉取命令
+```shell
+ql repo https://github.com/wq-h/Tieba_Sgin.git "Tieba_Sgin.py" "README.md" "sendNotify.py" "main"
+```
